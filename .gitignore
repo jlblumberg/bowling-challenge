@@ -1,2 +1,4 @@
 /**/.DS_Store
 node_modules
+spec/PlayerSpec.js
+src/Player.js
