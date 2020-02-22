@@ -1,20 +1,33 @@
-describe('Bowling outcome', function () {
+describe('Bowling scoring', function () {
+
+  var game;
 
   beforeEach(function () {
     game = new Game();
   });
 
-  it('is a gutter game if no points are scored', function () {
-    for (i = 0; i < 20; i++) {
-      game.roll(0);
+  function rollMany(pins, rolls) {
+    for (var i = 0; i < rolls; i++) {
+      game.roll(pins);
     }
+  };
+
+  it('can handle a gutter game', function () {
+    rollMany(0, 20);
     expect(game.score()).toEqual(0);
   });
 
-  it('is 20 if all ones rolled', function() {
-    for (i = 0; i < 20; i++) {
-      game.roll(1);
-    }
+  it('can handle all ones', function() {
+    rollMany(1, 20);
     expect(game.score()).toEqual(20);
   });
+
+  it('can roll a spare', function() {
+    game.roll(5);
+    game.roll(5); // spare
+    game.roll(3);
+    rollMany(0, 17);
+    expect(game.score()).toEqual(16);
+  });
+
 });
