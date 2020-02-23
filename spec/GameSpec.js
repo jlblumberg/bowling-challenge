@@ -30,4 +30,12 @@ describe('Bowling scoring', function () {
     expect(game.score()).toEqual(16);
   });
 
+  it('can roll a strike', function() {
+    game.roll(10); // strike, ends frame
+    game.roll(3);
+    game.roll(4); // end second frame
+    rollMany(0, 16)
+    expect(game.score()).toEqual(24);
+  });
+
 });
