@@ -38,4 +38,9 @@ describe('Bowling scoring', function () {
     expect(game.score()).toEqual(24);
   });
 
+  it('can roll a perfect game', function(){
+    rollMany(10, 12);
+    expect(game.score()).toEqual(300);
+  });
+
 });
