@@ -13,10 +13,10 @@ Game.prototype.score = function() {
 
   for (var frameIndex = 0; frameIndex < 10; frameIndex++) {
     if (isStrike()) {
-      result += getStrikeScore();
+      result += getSpecialScore();
       rollIndex += 1;
     } else if (isSpare()) {
-      result += getSpareScore();
+      result += getSpecialScore();
       rollIndex += 2
     } else {
       result += getNormalScore();
@@ -29,20 +29,16 @@ Game.prototype.score = function() {
     return session.rolls[rollIndex] === 10;
   }
 
-  function getStrikeScore() {
-    return session.rolls[rollIndex] + session.rolls[rollIndex + 1] + session.rolls[rollIndex + 2]; 
-  }
-
   function isSpare() {
     return session.rolls[rollIndex] + session.rolls[rollIndex + 1] === 10;
   }
 
-  function getSpareScore() {
-    return session.rolls[rollIndex] + session.rolls[rollIndex + 1] + session.rolls[rollIndex + 2];
-  }
-
   function getNormalScore() {
     return session.rolls[rollIndex] + session.rolls[rollIndex + 1];
+  }
+
+  function getSpecialScore() {
+    return session.rolls[rollIndex] + session.rolls[rollIndex + 1] + session.rolls[rollIndex + 2];
   }
 
 }
